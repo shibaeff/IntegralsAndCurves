@@ -9,7 +9,6 @@
 unsigned ITERATIONS; /** @brief zero it before the euquation solver call. The number of iterations consumed to solve the equations will be there*/
 
 # ifdef NEWTON
-extern unsigned ITERATIONS;
 
 /**
  * @brief Solves equation using Newton's method
