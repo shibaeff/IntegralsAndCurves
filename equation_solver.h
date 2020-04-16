@@ -6,7 +6,10 @@
 #define _EQUATION_SOLVER_H_
 
 
-static unsigned ITERATIONS = 0; /** @brief zero it before the euquation solver call. The number of iterations consumed to solve the equations will be there*/
+unsigned ITERATIONS; /** @brief zero it before the euquation solver call. The number of iterations consumed to solve the equations will be there*/
+
+# ifdef NEWTON
+extern unsigned ITERATIONS;
 
 /**
  * @brief Solves equation using Newton's method
@@ -22,17 +25,20 @@ double newton (double(*f) (double x), double (*fd) (double x),
                double (*g) (double x), double (*gd) (double x),
                double a, double b, double eps1
 );
+# endif
 
+#ifdef BISSEC
 /**
- * @brief Solves equation using Newton's method
+ * @brief Solves equation using bijection method. Return NAN if something goes wrong
  * @param f function
  * @param g function
  * @param a left bound
  * @param b right bound
  * @param eps1 error bound
  */
-double bijection (double (*f) (double x), double (*g) (double x),
-                  double a, double b, double eps1
+double bisection (double (*f) (double x), double (*g) (double x),
+                  double a, double b, double eps
 );
+#endif
 
 #endif //_EQUATION_SOLVER_H_

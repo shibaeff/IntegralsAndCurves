@@ -9,10 +9,20 @@
 #include "settings.h"
 #include "functions.h"
 
+static const char *TEST_OUTPUT = "Running test #%d. Took %d iterations. Expected %f, got %f\n";
+
+#ifdef NEWTON
 /**
  * @brief tests Newton's equation solution method on 3 functions
  */
 void test_newton();
+#endif
 
-static const char *TEST_OUTPUT = "Running test #%d. Took %d iterations. Expected %f, got %f\n";
+#ifdef BISSEC
+/**
+ * @brief test bisection method
+ */
+void test_bisection();
+#endif
+
 #endif //_TEST_EQUATION_SOLVER_H_H_

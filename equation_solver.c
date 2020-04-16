@@ -14,9 +14,39 @@ double newton (double(*f) (double x), double (*fd) (double x),
   double x = a;
   while (fabs(h) >= eps1)
     {
-      h = (f(x) - g(x)) / (fd(x) - gd(x));
       x = x - h;
+      h = (f(x) - g(x)) / (fd(x) - gd(x));
+
       ITERATIONS++;
     }
+  return x;
+}
+
+double EPS = 0.00001;
+double bisection (double (*f) (double x), double (*g) (double x),
+                  double a, double b, double eps1
+)
+{
+  double x = a;
+//  double val1 = f(a) - g(a);
+//  double val2 = f(b) - g(b);
+//  if (val1 * val2 > 0) {
+//    return NAN;
+//  }
+  while (fabs(b - a) >= eps1) {
+    x = (a + b) / 2;
+    if (f(x) - g(x) == 0) {
+      break;
+    }
+    if ((f(x) - g(x)) * (f(a) - g(a)) < 0) {
+      b = x;
+    } else {
+      a = x;
+    }
+    ITERATIONS++;
+    if (ITERATIONS >= 100000) {
+      return NAN;
+    }
+  }
   return x;
 }
