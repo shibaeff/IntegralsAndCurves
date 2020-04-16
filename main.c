@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "functions.h"
+#include "test_equation_solver.h"
 
 int main ()
 {
-  printf ("%f", f1(2));
+  test_newton ();
   return 0;
 }
