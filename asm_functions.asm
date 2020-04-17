@@ -90,3 +90,20 @@ f3:
     fdiv
     leave
     ret
+
+global df3
+df3:
+    push ebp
+    mov ebp, esp
+
+    fld1
+    fld qword[ebp + 8]
+
+    fdivp
+    fld qword[ebp + 8]
+    fdivp
+    fld qword[c2]
+    fmul
+    fchs
+    leave
+    ret

@@ -27,7 +27,7 @@
 //  return 3 / x;
 //}
 
-double df3 (double x)
-{
-  return -3 / (x * x);
-}
+//double df3 (double x)
+//{
+//  return -3 / (x * x);
+//}

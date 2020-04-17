@@ -45,7 +45,7 @@
  * @param x
  * @return function result
  */
-double df3(double x);
+// double df3(double x);
 
 
 #endif //_FUNCTIONS_H_
