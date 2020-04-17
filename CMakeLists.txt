@@ -10,7 +10,7 @@ enable_language(ASM_NASM)
 
 add_custom_target(asm DEPENDS asm_functions.o)
 add_custom_command(OUTPUT asm_functions.o
-        COMMAND nasm -f elf32 -o asm_functions.o asm_functions.asm && echo NASMNASMNASM
+        COMMAND nasm -f elf32 -o asm_functions.o asm_functions.asm
         DEPENDS asm_functions.h)
 
 OPTION(USEBISEC
