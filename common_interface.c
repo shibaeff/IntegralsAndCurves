@@ -19,3 +19,11 @@ double root (double(*f) (double x), double (*fd) (double x),
   return  bisection (f, g, a, b, eps1);
 #endif
 }
+
+
+double integration (double(*f) (double x), double (*fd) (double x),
+                    double a, double b, double eps1
+)
+{
+  return rectangle (f, fd, a, b, eps1);
+}

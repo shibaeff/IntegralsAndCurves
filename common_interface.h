@@ -5,6 +5,7 @@
 #ifndef _COMMON_INTERFACE_H_
 #define _COMMON_INTERFACE_H_
 #include "equation_solver.h"
+#include "integration.h"
 
 /**
  * Solves equation with one of methods
@@ -21,4 +22,9 @@ double root (double(*f) (double x), double (*fd) (double x),
                double (*g) (double x), double (*gd) (double x),
                double a, double b, double eps1
 );
+
+double integration (double(*f) (double x), double (*fd) (double x),
+                  double a, double b, double eps1
+);
+
 #endif //_COMMON_INTERFACE_H_
