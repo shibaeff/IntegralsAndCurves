@@ -10,5 +10,6 @@ extern double f1(double);
 extern double df1(double);
 extern double f2(double);
 extern double df2(double);
+extern double f3(double);
 
 #endif //_ASM_FUNCTIONS_H_

@@ -22,10 +22,10 @@
 //  return 3 * (x - 2) * (x - 2);
 //}
 
-double f3 (double x)
-{
-  return 3 / x;
-}
+//double f3 (double x)
+//{
+//  return 3 / x;
+//}
 
 double df3 (double x)
 {

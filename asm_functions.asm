@@ -79,3 +79,14 @@ df2:
     fmul
     leave
     ret
+
+global f3
+f3:
+    push ebp
+    mov ebp, esp
+
+    fld qword[c2]
+    fld qword[ebp + 8]
+    fdiv
+    leave
+    ret

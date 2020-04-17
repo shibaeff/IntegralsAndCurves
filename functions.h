@@ -38,7 +38,7 @@
  * @param x
  * @return function result
  */
-double f3(double x);
+// double f3(double x);
 
 /**
  * @brief calc -3/x**2
