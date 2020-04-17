@@ -17,21 +17,21 @@
  * @param x
  * @return function result
  */
-double df1(double x);
+// double df1(double x);
 
 /**
  * @brief calc (x-2)**3 - 1
  * @param x
  * @return function result
  */
-double f2(double x);
+// double f2(double x);
 
 /**
  * @brief calc 3 * (x-2)**2
  * @param x
  * @return function result
  */
-double df2(double x);
+// double df2(double x);
 
 /**
  * @brief calc 3/x

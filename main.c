@@ -114,5 +114,6 @@ main (int argc, char** argv)
             };
         };
     };
+  printf("%f", df2(4));
   return 0;
 }
