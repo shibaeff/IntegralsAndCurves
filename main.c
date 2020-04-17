@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "asm_functions.h"
 #include <unistd.h>
 #include <getopt.h>
 #include <math.h>
@@ -37,20 +38,25 @@ main (int argc, char** argv)
   double left = 0.001, right = 10;
   double x1, x2; // intersection points of functions f1 and f3, f2 and f3
   unsigned iterations1, iterations2; // iterations for two cases
-  ITERATIONS = 0;
+  ITERATIONS = 0; // ITERATION is a global variable
   x1 = root (f1, df1, f3, df3, left, right, EPS1);
   iterations1 = ITERATIONS;
   ITERATIONS = 0;
   x2 = root (f2, df2, f3, df3, left, right, EPS1);
   iterations2 = ITERATIONS;
 
+  // CALCULATING AREAS
   double area1 = integration (f1, df1, left, x1, EPS2);
   double area2 = integration (f3, df3, x1, x2, EPS2);
   double area3 = integration (f2, df2, 0, 3, EPS2);
   double area4 = integration (f2, df2, 3, x2, EPS2);
   double ans = area1 + area2 - area3 - area4;
+
+  // FINAL ANSWER
   printf(ANSI_COLOR_BLUE "Areas %f, %f, %f, %f\n", area1, area2, area3, area4);
-  printf("The answer is %f", ans);
+  printf("The answer is %f\n", ans);
+
+  // PRINT ADDITIONAL INFORMATION IF NEEDED
   while ((rez=getopt_long(argc,argv,short_options,
                           long_options,&option_index))!=-1){
 
@@ -108,6 +114,5 @@ main (int argc, char** argv)
             };
         };
     };
-  return 0;
   return 0;
 }

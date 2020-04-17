@@ -1,10 +1,18 @@
 cmake_minimum_required(VERSION 3.13)
 project(curves C)
+enable_language(ASM_NASM)
 
 # SET(EQSOLVER "")
 # add_compile_definitions(NEWTON) # uncomment to use Newton's method
 # add_compile_definitions(BISSEC)   # uncomment to use bisect   method
 # add_definitions(${EQSOLVER})
+
+
+add_custom_target(asm DEPENDS asm_functions.o)
+add_custom_command(OUTPUT asm_functions.o
+        COMMAND nasm -f elf32 -o asm_functions.o asm_functions.asm && echo NASMNASMNASM
+        DEPENDS asm_functions.h)
+
 OPTION(USEBISEC
         "Set bisection as default equation solution method"
         OFF)
@@ -17,5 +25,8 @@ ELSE(USEBISEC)
 ENDIF(USEBISEC)
 set(CMAKE_C_STANDARD 99)
 
-add_executable(curves main.c  functions.c  test_equation_solver.c  settings.h equation_solver.c common_interface.c common_interface.h integration.c integration.h colors.h)
+add_executable(curves main.c  functions.c  test_equation_solver.c  settings.h equation_solver.c
+        common_interface.c common_interface.h integration.c integration.h colors.h asm_functions.o)
+set_target_properties(curves PROPERTIES C_COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 target_link_libraries(curves m)
+add_dependencies(curves asm)

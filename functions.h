@@ -10,7 +10,7 @@
  * @param x
  * @return function result
  */
-double f1(double x);
+// double f1(double x);
 
 /**
  * @brief calc 0.6

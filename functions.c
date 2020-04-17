@@ -2,10 +2,10 @@
 // Created by paavo on 4/16/20.
 //
 
-double f1 (double x)
-{
-  return 0.6 * x + 3;
-}
+//double f1 (double x)
+//{
+//  return 0.6 * x + 3;
+//}
 
 double df1(double x)
 {
