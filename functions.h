@@ -1,10 +1,23 @@
 //
 // Created by paavo on 4/16/20.
 //
+/**
+ * @file
+ * @brief Additional functions and their derivatives used for testing
+ */
+#pragma once
+#include <math.h>
+//#ifndef _FUNCTIONS_H_
+//#define _FUNCTIONS_H_
 
-#ifndef _FUNCTIONS_H_
-#define _FUNCTIONS_H_
+double zero(double x);
 
+double one(double x);
+
+double reverse(double x);
+double exp_minus_1(double x);
+
+double ident(double x) ;
 /**
  * @brief calc 0.6x + 3
  * @param x
@@ -48,4 +61,4 @@
 // double df3(double x);
 
 
-#endif //_FUNCTIONS_H_
+//#endif //_FUNCTIONS_H_

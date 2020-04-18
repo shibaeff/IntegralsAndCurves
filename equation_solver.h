@@ -1,6 +1,11 @@
 //
 // Created by paavo on 4/16/20.
 //
+/**
+ * @file
+ * @brief contains implementations of Newton's method and bisection method
+ */
+
 #include <math.h>
 #ifndef _EQUATION_SOLVER_H_
 #define _EQUATION_SOLVER_H_

@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include "equation_solver.h"
 #include "settings.h"
-#include "functions.h"
 #include "asm_functions.h"
 
 static const char *TEST_OUTPUT = "Running test #%d. Took %d iterations. Expected %f, got %f\n";

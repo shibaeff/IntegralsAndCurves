@@ -1,15 +1,31 @@
+/**
+ * @file
+ * @brief main module, handles CLI and main calculations
+ */
 #include <stdio.h>
 #include "asm_functions.h"
 #include <unistd.h>
 #include <getopt.h>
 #include <math.h>
-#include "functions.h"
 #include "equation_solver.h"
 #include "test_equation_solver.h"
 #include "common_interface.h"
 #include "integration.h"
 #include "colors.h"
+#include "test_integration.h"
 
+
+/**
+ * @brief Entry point
+ *
+ * Execution of the program
+ * starts here.
+ *
+ * @param argc Number of arguments
+ * @param argv List of arguments
+ *
+ * @return Program exit status
+ */
 
 int
 main (int argc, char** argv)

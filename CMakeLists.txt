@@ -25,8 +25,8 @@ ELSE(USEBISEC)
 ENDIF(USEBISEC)
 set(CMAKE_C_STANDARD 99)
 
-add_executable(curves main.c  functions.c  test_equation_solver.c  settings.h equation_solver.c
-        common_interface.c common_interface.h integration.c integration.h colors.h asm_functions.o)
+add_executable(curves main.c test_equation_solver.c  settings.h equation_solver.c test_integration.c test_integration.h
+        common_interface.c common_interface.h integration.c integration.h colors.h asm_functions.o functions.c)
 set_target_properties(curves PROPERTIES C_COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 target_link_libraries(curves m)
 add_dependencies(curves asm)

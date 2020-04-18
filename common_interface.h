@@ -1,11 +1,15 @@
 //
 // Created by paavo on 4/16/20.
 //
-
+/**
+ * @file
+ * @brief contains interface methods to solve equations and calculate intergrals
+ */
 #ifndef _COMMON_INTERFACE_H_
 #define _COMMON_INTERFACE_H_
 #include "equation_solver.h"
 #include "integration.h"
+
 
 /**
  * Solves equation with one of methods

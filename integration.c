@@ -36,6 +36,7 @@ double rectangle (double(*f) (double x), double (*fd) (double x),
   double sum = 0;
   for (int i = 1; i <= n; i++) {
     sum += delta * f(a + (i - 1) * delta);
+    I_ITERATIONS++;
   }
   return sum;
 }

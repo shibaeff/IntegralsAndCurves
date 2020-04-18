@@ -2,6 +2,10 @@
 // Created by paavo on 4/17/20.
 //
 
+/**
+ * @file
+ * @brief contains constants to generate multicolored CLI output
+ */
 #ifndef _COLORS_H_
 #define _COLORS_H_
 #define ANSI_COLOR_RED     "\x1b[31m"

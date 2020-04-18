@@ -4,6 +4,7 @@
 
 #include "test_equation_solver.h"
 #include "settings.h"
+#include "functions.h"
 
 extern double newton (double(*f) (double x), double (*fd) (double x),
                       double (*g) (double x), double (*gd) (double x),
@@ -13,11 +14,12 @@ extern double newton (double(*f) (double x), double (*fd) (double x),
 void test_newton()
 {
   // f1 against f2, f2 against f3
-  double expected[] = {3.84776, 3.2439};
-  double A = 0.001;
+  double expected[] = {3.84776, 3.2439, 0, 1, 0};
+  double A = 0.01;
   double B = 10;
-  double (*funcs[][4])(double x) = {{f1, df1, f2, df2}, {f2, df2, f3, df3}};
-  for (int i = 0; i < 2; ++i) {
+  double (*funcs[][4])(double x) = {{f1, df1, f2, df2}, {f2, df2, f3, df3}, {sin, cos, zero, zero},
+                                    {log, reverse, zero, zero}, {exp_minus_1, exp, zero, zero}};
+  for (int i = 0; i < 5; ++i) {
     ITERATIONS = 0;
     double got = newton (funcs[i][0], funcs[i][1], funcs[i][2], funcs[i][3], A, B, EPS1);
     if (fabs (got - expected[i]) >= EPS1) {
@@ -46,19 +48,17 @@ extern double bisection (double (*f) (double x), double (*g) (double x),
 void test_bisection()
 {
   double expected[] = {3.84776, 3.2439};
-  double A = 1;
+  double A = 0.001;
   double B = 10;
   double (*funcs[][2])(double x) = {{f1, f2}, {f2, f3}};
   for (int i = 0; i < 2; ++i) {
       ITERATIONS = 0;
       double got = bisection (funcs[i][0], funcs[i][1], A, B, EPS1);
       if (fabs (got - expected[i]) >= EPS1) {
-          printf("TEST FAILED!\n");
+          printf("TEST FAILED! ");
+          printf(TEST_OUTPUT, i, ITERATIONS, expected[i], got);
         } else {
           printf(TEST_OUTPUT, i, ITERATIONS, expected[i], got);
         }
-
-
-
     }
 }

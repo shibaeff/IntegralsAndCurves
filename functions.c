@@ -1,33 +1,28 @@
 //
-// Created by paavo on 4/16/20.
+// Created by paavo on 4/18/20.
 //
 
-//double f1 (double x)
-//{
-//  return 0.6 * x + 3;
-//}
+#include "functions.h"
+double zero(double x)
+{
+  return 0;
+}
 
-//double df1(double x)
-//{
-//  return 0.6;
-//}
+double one(double x)
+{
+  return 1;
+}
 
-//double f2 (double x)
-//{
-//  return (x - 2) * (x - 2) * (x - 2) - 1;
-//}
 
-//double df2(double x)
-//{
-//  return 3 * (x - 2) * (x - 2);
-//}
+double reverse(double x)
+{
+  return 1/x;
+}
 
-//double f3 (double x)
-//{
-//  return 3 / x;
-//}
+double exp_minus_1(double x) {
+  return exp(x) - 1;
+}
 
-//double df3 (double x)
-//{
-//  return -3 / (x * x);
-//}
+double ident(double x) {
+  return x;
+}

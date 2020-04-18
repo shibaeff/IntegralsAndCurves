@@ -1,7 +1,10 @@
 //
 // Created by paavo on 4/16/20.
 //
-
+/**
+ * @file
+ * @breif contains precision settings
+ */
 #ifndef _SETTINGS_H_
 #define _SETTINGS_H_
 

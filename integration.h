@@ -1,7 +1,10 @@
 //
 // Created by paavo on 4/17/20.
 //
-
+/**
+ * @file
+ * @brief contains implementation of the midpoint rule to approximate integrals
+ */
 #ifndef _INTEGRATION_H_
 #define _INTEGRATION_H_
 #include "equation_solver.h"
@@ -14,6 +17,8 @@
  * @param eps2 error bound
  * @return
  */
+
+unsigned I_ITERATIONS;
 double rectangle (double(*f) (double x), double (*fd) (double x),
                double a, double b, double eps1
 );
