@@ -2,6 +2,11 @@
 // Created by paavo on 4/16/20.
 //
 
+/**
+ * @file
+ * @brief Tests for equation solution methods
+ */
+
 #ifndef _TEST_EQUATION_SOLVER_H_H_
 #define _TEST_EQUATION_SOLVER_H_H_
 #include <stdio.h>

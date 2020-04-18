@@ -129,6 +129,9 @@ main (int argc, char** argv)
 #ifdef BISSEC
               test_bisection ();
 #endif
+              printf("Testing integration method\n");
+              test_integration ();
+
               printf(ANSI_COLOR_RESET);
               break;
             };
