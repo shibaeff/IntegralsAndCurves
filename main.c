@@ -36,24 +36,31 @@ main (int argc, char** argv)
   printf("Using bisection method\n");
 #endif
   double left = 0.001, right = 10;
-  double x1, x2; // intersection points of functions f1 and f3, f2 and f3
+  double x13, x23; // intersection points of functions f1 and f3, f2 and f3
   unsigned iterations1, iterations2; // iterations for two cases
   ITERATIONS = 0; // ITERATION is a global variable
-  x1 = root (f1, df1, f3, df3, left, right, EPS1);
+  x13 = root (f1, df1, f3, df3, left, right, EPS1);
   iterations1 = ITERATIONS;
   ITERATIONS = 0;
-  x2 = root (f2, df2, f3, df3, left, right, EPS1);
+  x23 = root (f2, df2, f3, df3, left, right, EPS1);
   iterations2 = ITERATIONS;
 
+  // f1 and f2 intersection is not needed, but let's measure it
+  ITERATIONS = 0;
+  double x12 = root (f1, df1, f2, df2, left, right, EPS1);
+  unsigned iterations3 = ITERATIONS;
+
   // CALCULATING AREAS
-  double area1 = integration (f1, df1, left, x1, EPS2);
-  double area2 = integration (f3, df3, x1, x2, EPS2);
-  double area3 = integration (f2, df2, 0, 3, EPS2);
-  double area4 = integration (f2, df2, 3, x2, EPS2);
-  double ans = area1 + area2 - area3 - area4;
+  double area1 = integration (f1, df1, x13, x12, EPS2);
+  double area2 = integration (f2, df2, x23, x12, EPS2);
+  double area3 = integration (f3, df3, x13, x23, EPS2);
+  double ans = area1 - area2 - area3;
 
   // FINAL ANSWER
-  printf(ANSI_COLOR_BLUE "Areas %f, %f, %f, %f\n", area1, area2, area3, area4);
+  const char * kFormat = "Integrating function %d from %f to %f, area is %f\n";
+  printf(kFormat, 1, x13, x12, area1);
+  printf(kFormat, 2, x23, x12, area2);
+  printf(kFormat, 3, x13, x23, area3);
   printf("The answer is %f\n", ans);
 
   // PRINT ADDITIONAL INFORMATION IF NEEDED
@@ -84,15 +91,16 @@ main (int argc, char** argv)
 
           case 'p': {
               printf(ANSI_COLOR_CYAN "Printing intersection points\n");
-              printf("%f %f\n", x1, x2);
+              printf("%f %f %f\n", x13, x23, x12);
               printf(ANSI_COLOR_RESET);
 
               break;
             };
           case 'i': {
               printf(ANSI_COLOR_YELLOW "Printing number of iterations it took find respective intersections\n");
-              printf("For f1 and f2 it took %d iterations\n", iterations1);
+              printf("For f1 and f3 it took %d iterations\n", iterations1);
               printf("For f2 and f3 it took %d iterations\n", iterations2);
+              printf("For f1 and f2 it took %d iterations\n", iterations3);
               printf(ANSI_COLOR_RESET);
 
               break;
