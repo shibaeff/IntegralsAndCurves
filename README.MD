@@ -1,19 +1,13 @@
-To obtain the Makefile install cmake:
-`sudo apt-get install cmake`
+Run 
 
-and run:
+`make all` to build the project
 
-`cmake -DUSEBISEC=OFF` - in this case Newton's method will be used to solve equations
+run
 
-`cmake -DUSEBISEC=ON`   - in this case bisection method will be used to solve equations
+`make clean` to clean the build
 
-Finally, run make:
+run 
 
-`make all` - this will be build the entire project.
+`./curves` to see the output of the program
 
-`./curves -h` - to get help about CLI options
-
-`make clean` - to clean the build
-
-Good luck! 
-
+Be sure to set `-DNEWTON` or `-DBISEC` to choose the equation solution method to build.
