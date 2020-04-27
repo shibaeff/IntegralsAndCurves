@@ -10,8 +10,24 @@ double newton (double(*f) (double x), double (*fd) (double x),
              double a, double b, double eps1
 )
 {
-  double h = (f(a) - g(a)) / (fd(a) - gd(a));
-  double x = a;
+  double mid = (a + b) / 2;
+  if ((f(mid) - g(mid)) > (f(a) - g(a) + f(b) - g(b)) / 2 && (f(a) - g(a) < 0) ||
+      (f(mid) - g(mid)) < (f(a) - g(a) + f(b) - g(b)) / 2 && (f(a) - g(a)  > 0)
+      ) {
+      double h = (f(a) - g(a)) / (fd(a) - gd(a));
+      double x = a;
+      while (fabs(h) >= eps1)
+        {
+          x = x - h;
+          h = (f(x) - g(x)) / (fd(x) - gd(x));
+
+          ITERATIONS++;
+        }
+      return x;
+
+  }
+  double h = (f(b) - g(b)) / (fd(b) - gd(b));
+  double x = b;
   while (fabs(h) >= eps1)
     {
       x = x - h;

@@ -8,12 +8,12 @@
 #ifndef _ASM_FUNCTIONS_H_
 #define _ASM_FUNCTIONS_H_
 
-extern void asm_hello();
-extern double f1(double);
-extern double df1(double);
-extern double f2(double);
-extern double df2(double);
-extern double f3(double);
-extern double df3(double);
+void asm_hello();
+double f1(double);
+double df1(double);
+double f2(double);
+double df2(double);
+double f3(double);
+double df3(double);
 
 #endif //_ASM_FUNCTIONS_H_

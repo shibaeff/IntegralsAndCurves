@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -m32 -DBISSEC # -DNEWTON
+CFLAGS=-c -m32  -DBISSEC
 LDFLAGS=
 SOURCES=test_equation_solver.c  settings.h equation_solver.c test_integration.c test_integration.h common_interface.c\
  common_interface.h integration.c integration.h colors.h asm_functions.h functions.c main.c asm_functions.o

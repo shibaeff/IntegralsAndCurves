@@ -29,8 +29,6 @@ void test_newton()
       printf(TEST_OUTPUT, i, ITERATIONS, expected[i], got);
     }
 
-
-
   }
 }
 

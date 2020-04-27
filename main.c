@@ -3,6 +3,7 @@
  * @brief main module, handles CLI and main calculations
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include "asm_functions.h"
 #include <unistd.h>
 #include <getopt.h>
@@ -31,7 +32,7 @@ int
 main (int argc, char** argv)
 {
 
-  const char* short_options = "ht::p::i::";
+  const char* short_options = "ht::p::i::m::";
 
   const struct option long_options[] = {
       {"help",no_argument,NULL,'h'},
@@ -92,16 +93,61 @@ main (int argc, char** argv)
               printf("Options: \n");
               printf("-h, -help for this help\n");
               printf("-t, -test for testing \n");
-              printf("-p, -points to print points of intersection");
+              printf("-p, -points to print points of intersection\n");
+              printf("-m, -for manual testing. This option presents a special format\n");
+              puts("Select testing regime: 1 - find roots, 2 - integrate");
+              puts("FOR ROOTS:");
+              puts("Select any of functions: 1 - sin, 2 - log, 3 - exp-1");
+              puts("Enter bounds and eps");
+              puts("FOR INTEGRATION:");
+              puts("Select any of functions: 1 - sin, 2 - exp, 3 - y = x");
+              puts("Enter bounds and eps");
               printf("-i, -iterations to print number of iterations to find points of intersection\n" ANSI_COLOR_RESET);
+
 
               break;
             };
-          case 's': {
-              if (optarg!=NULL)
-                printf("found size with value %s\n",optarg);
-              else
-                printf("found size without value\n");
+          case 'm': {
+              puts("Manual testing regime");
+              double (*funcs1[])(double) = {sin, log, exp_minus_1};
+              double (*dfuncs1[])(double) = {cos, reverse, exp};
+              double (*funcs2[])(double) = {sin, exp, ident};
+              double (*dfuncs2[])(double) = {cos, exp, one};
+              int regime, funcnum;
+              double l, r, eps;
+
+              int res;
+              res = sscanf(argv[2], "%d", &regime);
+              if (res != 1) {
+                puts("Error parsing args!!!");
+                return 0;
+              }
+              res = sscanf(argv[3], "%d", &funcnum);
+              if (res != 1) {
+                  puts("Error parsing args!!!");
+                  return 0;
+                }
+
+              res = sscanf(argv[4], "%f", &l);
+              if (res != 1) {
+                  puts("Error parsing args!!!");
+                  return 0;
+                }
+
+              l = strtof(argv[4], 0);
+              r = strtof(argv[5], 0);
+              eps = strtof(argv[6], 0);
+
+
+              double got;
+              funcnum++;
+              if (regime == 1) {
+                 got = root(funcs1[funcnum], dfuncs1[funcnum], zero, zero, l, r, eps);
+              }
+              if (regime == 2) {
+                  got = integration (funcs2[funcnum], dfuncs2[funcnum], l, r, eps);
+                }
+              printf("Test complete. Regime %d, l = %f, r = %f, eps = %f. Got %f.\n", regime, l, r, eps, got);
               break;
             };
 

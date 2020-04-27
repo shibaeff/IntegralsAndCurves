@@ -17,7 +17,7 @@ int granularity (double (*f) (double x), double (*fd) (double), double a, double
           if (fabs (f (x) * delta + fd (x) * delta * delta / 2) > eps)
             {
               n *= 2;
-              goto new;
+              goto new; // TODO continue
             }
         }
       return n;
