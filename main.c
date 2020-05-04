@@ -13,8 +13,12 @@
 #include "common_interface.h"
 #include "integration.h"
 #include "colors.h"
+#include "functions.h"
 #include "test_integration.h"
 
+double minus_sin(double x) {
+  return -sin(x);
+}
 
 /**
  * @brief Entry point
@@ -59,12 +63,12 @@ main (int argc, char** argv)
   x13 = root (f1, df1, f3, df3, left, right, EPS1);
   iterations1 = ITERATIONS;
   ITERATIONS = 0;
-  x23 = root (f2, df2, f3, df3, left, right, EPS1);
+  x23 = root (f2, df2, f3, df3, 3, right, EPS1);
   iterations2 = ITERATIONS;
 
   // f1 and f2 intersection is not needed, but let's measure it
   ITERATIONS = 0;
-  double x12 = root (f1, df1, f2, df2, left, right, EPS1);
+  double x12 = root (f1, df1, f2, df2, 3, right, EPS1);
   unsigned iterations3 = ITERATIONS;
 
   // CALCULATING AREAS
@@ -109,8 +113,8 @@ main (int argc, char** argv)
             };
           case 'm': {
               puts("Manual testing regime");
-              double (*funcs1[])(double) = {sin, log, exp_minus_1};
-              double (*dfuncs1[])(double) = {cos, reverse, exp};
+              double (*funcs1[])(double) = {sin, log, exp_minus_1, cos};
+              double (*dfuncs1[])(double) = {cos, reverse, exp, minus_sin};
               double (*funcs2[])(double) = {sin, exp, ident};
               double (*dfuncs2[])(double) = {cos, exp, one};
               int regime, funcnum;
@@ -122,38 +126,57 @@ main (int argc, char** argv)
                 puts("Error parsing args!!!");
                 return 0;
               }
-              res = sscanf(argv[3], "%d", &funcnum);
-              if (res != 1) {
-                  puts("Error parsing args!!!");
-                  return 0;
-                }
-
-              res = sscanf(argv[4], "%f", &l);
-              if (res != 1) {
-                  puts("Error parsing args!!!");
-                  return 0;
-                }
-
-              l = strtof(argv[4], 0);
-              r = strtof(argv[5], 0);
-              eps = strtof(argv[6], 0);
-
-
               double got;
-              funcnum++;
               if (regime == 1) {
-                 got = root(funcs1[funcnum], dfuncs1[funcnum], zero, zero, l, r, eps);
+                  res = sscanf(argv[3], "%d", &funcnum);
+                  int another_funcnum;
+
+
+                  res = sscanf(argv[4], "%d", &another_funcnum);
+                  if (res != 1) {
+                      puts("Error parsing args!!!");
+                      return 0;
+                    }
+
+                  res = sscanf(argv[4], "%f", &l);
+                  if (res != 1) {
+                      puts("Error parsing args!!!");
+                      return 0;
+                    }
+
+                  l = strtof(argv[5], 0);
+                  r = strtof(argv[6], 0);
+                  eps = strtof(argv[7], 0);
+                  printf("Intersecting %d %d\n", funcnum, another_funcnum);
+                  got = root(funcs1[funcnum - 1], dfuncs1[funcnum - 1], funcs1[another_funcnum - 1], dfuncs1[another_funcnum - 1], l, r, eps);
+                  printf("Test complete. Regime %d, l = %f, r = %f, eps = %f. Got %f.\n", regime, l, r, eps, got);
+                } else {
+                  res = sscanf(argv[3], "%d", &funcnum);
+                  if (res != 1) {
+                      puts("Error parsing args!!!");
+                      return 0;
+                    }
+
+                  res = sscanf(argv[4], "%f", &l);
+                  if (res != 1) {
+                      puts("Error parsing args!!!");
+                      return 0;
+                    }
+
+                  l = strtof(argv[4], 0);
+                  r = strtof(argv[5], 0);
+                  eps = strtof(argv[6], 0);
+                  got = integration (funcs1[funcnum - 1], dfuncs1[funcnum - 1], l, r, eps);
+                  printf("Test complete. Regime %d, l = %f, r = %f, eps = %f. Got %f.\n", regime, l, r, eps, got);
               }
-              if (regime == 2) {
-                  got = integration (funcs2[funcnum], dfuncs2[funcnum], l, r, eps);
-                }
-              printf("Test complete. Regime %d, l = %f, r = %f, eps = %f. Got %f.\n", regime, l, r, eps, got);
-              break;
+
+
+              return 0;
             };
 
           case 'p': {
               printf(ANSI_COLOR_CYAN "Printing intersection points\n");
-              printf("%f %f %f\n", x13, x23, x12);
+              printf("x13 = %f, x23 = %f,  x12 = %f\n", x13, x23, x12);
               printf(ANSI_COLOR_RESET);
 
               break;

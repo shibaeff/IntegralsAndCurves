@@ -7,6 +7,7 @@
  */
 
 #include <math.h>
+#include <stdio.h>
 #ifndef _EQUATION_SOLVER_H_
 #define _EQUATION_SOLVER_H_
 
